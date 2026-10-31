@@ -1,0 +1,11 @@
+{"ts":"2026-10-29T15:47:53.640Z","type":"validation","id":"102824","status":"REJECTED","score":0,"failed":["uppercase","number","special","common"]}
+{"ts":"2026-10-29T15:54:25.103Z","type":"validation","id":"9e59e2","status":"ACCEPTED","score":100,"failed":[]}
+{"ts":"2026-10-29T15:58:56.116Z","type":"validation","id":"f4cdd8","status":"REJECTED","score":20,"failed":["sequence","breach"]}
+{"ts":"2026-10-29T15:59:08.347Z","type":"validation","id":"593820","status":"REJECTED","score":50,"failed":["number"]}
+{"ts":"2026-10-29T15:59:11.322Z","type":"validation","id":"4ab879","status":"ACCEPTED","score":50,"failed":[]}
+{"ts":"2026-10-29T15:59:23.007Z","type":"validation","id":"207294","status":"REJECTED","score":20,"failed":["sequence","breach"]}
+{"ts":"2026-10-29T15:59:29.168Z","type":"validation","id":"3aa20c","status":"REJECTED","score":20,"failed":["sequence","breach"]}
+{"ts":"2026-10-29T15:59:34.764Z","type":"validation","id":"3e6bb5","status":"REJECTED","score":20,"failed":["sequence","breach"]}
+{"ts":"2026-10-29T15:59:46.767Z","type":"validation","id":"7c1097","status":"REJECTED","score":0,"failed":["length","uppercase","number","special","breach"]}
+{"ts":"2026-10-29T17:29:14.317Z","type":"validation","id":"9159cf","status":"REJECTED","score":0,"failed":["length","uppercase","number","special","breach"]}
+{"ts":"2026-10-29T17:29:22.188Z","type":"validation","id":"ac039a","status":"REJECTED","score":20,"failed":["length","uppercase","number","special","breach"]}
