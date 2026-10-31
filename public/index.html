@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Password Validator &amp; Security Monitor</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div>
+        <h1>Password Validator <span>&amp; Security Monitor</span></h1>
+        <p class="sub">Type a password and watch the backend check it, rule by rule, in real time.</p>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" type="button" class="ghost">Light theme</button>
+        <div class="privacy" title="Passwords are sent in the POST body only; the server never stores or logs them.">
+        <span class="dot"></span> Passwords are never stored or logged
+        </div>
+      </div>
+    </header>
+
+    <section class="grid">
+      <!-- LEFT: input, meter, checks -->
+      <div class="col">
+        <div class="card">
+          <label for="pw" class="lbl">Test a password</label>
+          <div class="field">
+            <input id="pw" type="password" maxlength="128" autocomplete="off" autocapitalize="off"
+                   autocorrect="off" spellcheck="false" placeholder="Start typing…" aria-describedby="meterLabel">
+            <button id="toggle" type="button" class="ghost" aria-pressed="false">Show</button>
+          </div>
+          <details class="personal-details">
+            <summary>Optional personal-information check</summary>
+            <div class="personal-fields">
+              <input id="username" type="text" autocomplete="username" placeholder="Username">
+              <input id="email" type="email" autocomplete="email" placeholder="Email">
+            </div>
+          </details>
+          <div class="row">
+            <button id="validate" type="button" class="primary">Validate</button>
+            <button id="generate" type="button" class="ghost">Generate strong password</button>
+            <span class="hint">Validates automatically as you type</span>
+          </div>
+
+          <div class="meter-head">
+            <span>Strength</span>
+            <span><b id="meterLabel">—</b> <span id="meterScore" class="muted">0/100</span></span>
+          </div>
+          <div class="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="meter">
+            <div id="meterFill" class="fill" data-level="0"></div>
+          </div>
+          <div class="crack-row"><span>Estimated entropy: <b id="entropy">—</b></span><span>Crack time: <b id="crackTime">—</b></span></div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <h2>Validation checks</h2>
+            <span id="passedCount" class="muted">0 / 8</span>
+          </div>
+          <ul id="checks" class="checks" aria-live="polite"></ul>
+        </div>
+
+        <div class="card" id="suggestCard" hidden>
+          <h2>How to fix it</h2>
+          <ul id="suggestions" class="suggest"></ul>
+        </div>
+      </div>
+
+      <!-- RIGHT: terminal + summary -->
+      <div class="col">
+        <div class="card term-card">
+          <div class="term-bar">
+            <span class="light r"></span><span class="light y"></span><span class="light g"></span>
+            <span class="term-title">validator@backend — live log</span>
+            <span id="conn" class="conn">idle</span>
+          </div>
+          <div class="log-controls" aria-label="Log controls">
+            <button id="pauseLog" type="button" class="ghost" aria-pressed="false">Pause</button>
+            <button id="clearLog" type="button" class="ghost">Clear</button>
+            <button id="copyLog" type="button" class="ghost">Copy</button>
+            <button id="logMode" type="button" class="ghost" aria-pressed="false">Compact</button>
+          </div>
+          <div id="terminal" class="terminal" role="log" aria-live="off" tabindex="0"></div>
+        </div>
+
+        <div class="card summary" id="summary">
+          <div class="card-head"><h2>Validation summary</h2></div>
+          <div class="sum-body">
+            <div id="status" class="status" data-state="idle" role="status" aria-live="polite">AWAITING INPUT</div>
+            <dl class="stats">
+              <div><dt>Checks passed</dt><dd id="sumPassed">—</dd></div>
+              <div><dt>Strength</dt><dd id="sumStrength">—</dd></div>
+              <div><dt>Failed rules</dt><dd id="sumFailed">—</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h2>Live security statistics</h2></div>
+          <dl class="dashboard-stats">
+            <div><dt>Total validations</dt><dd id="statTotal">0</dd></div>
+            <div><dt>Accepted</dt><dd id="statAccepted">0</dd></div>
+            <div><dt>Rejected</dt><dd id="statRejected">0</dd></div>
+          </dl>
+          <div id="failedRules" class="failed-rules"></div>
+        </div>
+
+        <details class="card policy-card">
+          <summary>Policy configuration</summary>
+          <div class="policy-form">
+            <label>Minimum length <input id="minLength" type="number" min="4" max="128" value="8"></label>
+            <div id="requiredRules" class="required-rules"></div>
+            <button id="savePolicy" type="button" class="primary">Save policy</button>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <footer class="foot">
+      Validation runs on the Node.js + Express backend. The server records only rule names and results, never the password itself.
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
